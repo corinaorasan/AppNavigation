@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_gameFragment_to_gameOverFragment3"
             app:destination="@id/gameOverFragment" />
+        <action
+            android:id="@+id/action_gameFragment_to_gameWonFragment3"
+            app:destination="@id/gameWonFragment" />
     </fragment>
     <fragment
         android:id="@id/gameOverFragment"
