@@ -8,7 +8,7 @@
         android:id="@+id/titleFragment"
         android:name="com.example.android.navigation.TitleFragment"
         android:label="fragment_title"
-        tools:layout="@layout/fragment_title" >
+        tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
@@ -18,4 +18,9 @@
         android:name="com.example.android.navigation.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@id/gameOverFragment"
+        android:name="com.example.android.navigation.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" />
 </navigation>
