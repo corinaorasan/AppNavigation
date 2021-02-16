@@ -78,7 +78,7 @@ class GameFragment : Fragment() {
         { view: View ->
             val checkedId = binding.questionRadioGroup.checkedRadioButtonId
             if (-1 != checkedId) {
-                changeAnswerIndex(checkedId)
+                setTheAnswerIndex(checkedId)
                 // The first answer in the original question is always the correct one, so if our
                 // answer matches, we have the correct answer.
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
@@ -98,7 +98,7 @@ class GameFragment : Fragment() {
         return binding.root
     }
 
-    private fun changeAnswerIndex(checkedId: Int) {
+    private fun setTheAnswerIndex(checkedId: Int) {
         when (checkedId) {
             R.id.secondAnswerRadioButton -> answerIndex = 1
             R.id.thirdAnswerRadioButton -> answerIndex = 2
