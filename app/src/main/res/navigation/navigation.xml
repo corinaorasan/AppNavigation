@@ -37,7 +37,7 @@
         android:label="fragment_game_over"
         tools:layout="@layout/fragment_game_over">
         <action
-            android:id="@+id/action_gameOverFragment_to_gameFragment2"
+            android:id="@+id/action_gameOverFragment_to_gameFragment"
             app:destination="@id/gameFragment"
             app:popUpTo="@id/titleFragment" />
     </fragment>
