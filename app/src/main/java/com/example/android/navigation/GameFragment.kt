@@ -123,7 +123,7 @@ class GameFragment : Fragment() {
     }
 
     private fun navigateToGameWon() {
-        view?.findNavController()?.navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment())
+        view?.findNavController()?.navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment(numQuestions,questionIndex))
     }
 
     private fun navigateToGameOver() {
