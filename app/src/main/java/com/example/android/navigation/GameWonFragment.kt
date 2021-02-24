@@ -45,6 +45,13 @@ class GameWonFragment : Fragment() {
         inflater.inflate(R.menu.winner_menu,menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.share->shareSuccess()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun displayArgs() {
         val args = GameWonFragmentArgs.fromBundle(arguments!!)
         Toast.makeText(context, "NumCorrect: ${args.numCorrect}, NumQuestions: ${args.numQuestions}", Toast.LENGTH_LONG).show()
