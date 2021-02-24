@@ -45,6 +45,9 @@ class GameWonFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.winner_menu,menu)
+        if (null == getShareIntent().resolveActivity(activity!!.packageManager)){
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
