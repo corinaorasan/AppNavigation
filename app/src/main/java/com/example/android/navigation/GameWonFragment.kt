@@ -37,6 +37,7 @@ class GameWonFragment : Fragment() {
             view?.findNavController()?.navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment())
         }
         displayArgs()
+        setHasOptionsMenu(true)
         return binding.root
     }
     private fun displayArgs(){
