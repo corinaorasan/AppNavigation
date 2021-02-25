@@ -56,4 +56,9 @@
         android:name="com.example.android.navigation.AboutFragment"
         android:label="@string/title_about_trivia"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/moreInfoFragment"
+        android:name="com.example.android.navigation.MoreInfoFragment"
+        android:label="MoreInfoFragment"
+        tools:layout="@layout/fragment_more_info"/>
 </navigation>
