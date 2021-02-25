@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -82,6 +83,7 @@ class GameFragment : Fragment() {
                 // The first answer in the original question is always the correct one, so if our
                 // answer matches, we have the correct answer.
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
+                    Toast.makeText(context, "Your answer is correct! Answer the following question.", Toast.LENGTH_LONG).show()
                     questionIndex++
                     if (questionIndex < numQuestions) {
                         currentQuestion = questions[questionIndex]
@@ -91,6 +93,7 @@ class GameFragment : Fragment() {
                         navigateToGameWon()
                     }
                 } else {
+                    Toast.makeText(context, "Sorry! Your answer is wrong...", Toast.LENGTH_SHORT).show()
                     navigateToGameOver()
                 }
             }
@@ -123,7 +126,7 @@ class GameFragment : Fragment() {
     }
 
     private fun navigateToGameWon() {
-        view?.findNavController()?.navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment(numQuestions,questionIndex))
+        view?.findNavController()?.navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment(numQuestions, questionIndex))
     }
 
     private fun navigateToGameOver() {
