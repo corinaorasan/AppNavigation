@@ -36,25 +36,25 @@ class GameFragment : Fragment() {
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (or better yet, not define the questions in code...)
     private val questions: MutableList<Question> = mutableListOf(
-            Question(text = context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("all of these", "tools", "documentation", "libraries")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")),
-            Question(text = context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("Data Binding", "Data Pushing", "Set Text", "OnClick")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("onCreateView", "onViewCreated", "onCreateLayout", "onInflateLayout")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")),
-            Question(text =  context?.getString(R.string.question_1)?:"",
+            Question(text = context?.getString(R.string.question_1) ?: "",
                     answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"))
     )
 
