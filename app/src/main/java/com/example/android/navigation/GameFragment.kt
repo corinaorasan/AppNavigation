@@ -35,43 +35,47 @@ class GameFragment : Fragment() {
     // The first answer is the correct one.  We randomize the answers before showing the text.
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (or better yet, not define the questions in code...)
-    private val questions: MutableList<Question> = mutableListOf(
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("all of these", "tools", "documentation", "libraries")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("Data Binding", "Data Pushing", "Set Text", "OnClick")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("onCreateView", "onViewCreated", "onCreateLayout", "onInflateLayout")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")),
-            Question(text = context?.getString(R.string.question_1) ?: "",
-                    answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"))
-    )
+
 
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
-    private val numQuestions = Math.min((questions.size + 1) / 2, 3)
     private var answerIndex = 0
+    private var numQuestions = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
+
+        val questions: MutableList<Question> = mutableListOf(
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("all of these", "tools", "documentation", "libraries")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("Data Binding", "Data Pushing", "Set Text", "OnClick")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("onCreateView", "onViewCreated", "onCreateLayout", "onInflateLayout")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")),
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"))
+        )
+
+        val numQuestions = Math.min((questions.size + 1) / 2, 3)
 
         val binding = DataBindingUtil.inflate<FragmentGameBinding>(
                 inflater, R.layout.fragment_game, container, false)
 
         // Shuffles the questions and sets the question index to the first question.
-        randomizeQuestions()
+        randomizeQuestions(questions)
 
         binding.game = this
 
@@ -87,7 +91,7 @@ class GameFragment : Fragment() {
                     questionIndex++
                     if (questionIndex < numQuestions) {
                         currentQuestion = questions[questionIndex]
-                        setQuestion()
+                        setQuestion(questions)
                         binding.invalidateAll()
                     } else {
                         navigateToGameWon()
@@ -110,15 +114,15 @@ class GameFragment : Fragment() {
     }
 
     // randomize the questions and set the first question
-    private fun randomizeQuestions() {
+    private fun randomizeQuestions(questions: MutableList<Question>) {
         questions.shuffle()
         questionIndex = 0
-        setQuestion()
+        setQuestion(questions)
     }
 
     // Sets the question and randomizes the answers.  This only changes the data, not the UI.
     // Calling invalidateAll on the FragmentGameBinding updates the data.
-    private fun setQuestion() {
+    private fun setQuestion(questions: MutableList<Question>) {
         currentQuestion = questions[questionIndex]
         answers = currentQuestion.answers.toMutableList()
         answers.shuffle()

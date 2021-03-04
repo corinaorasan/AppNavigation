@@ -43,7 +43,7 @@ class GameWonFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.winner_menu, menu)
-        if (getShareIntent().resolveActivity(activity!!.packageManager) == null) {
+        if (activity?.packageManager?.let { getShareIntent()?.resolveActivity(it) } == null) {
             menu.findItem(R.id.share)?.isVisible = false
         }
     }
@@ -56,13 +56,13 @@ class GameWonFragment : Fragment() {
     }
 
     private fun displayArgs() {
-        val args = GameWonFragmentArgs.fromBundle(arguments!!)
-        Toast.makeText(context, "NumCorrect: ${args.numCorrect}, NumQuestions: ${args.numQuestions}", Toast.LENGTH_LONG).show()
+        val args = this.arguments?.let { GameWonFragmentArgs.fromBundle(it) }
+        Toast.makeText(context, "NumCorrect: ${args?.numCorrect}, NumQuestions: ${args?.numQuestions}", Toast.LENGTH_LONG).show()
     }
 
-    private fun getShareIntent(): Intent {
-        val args = GameWonFragmentArgs.fromBundle(arguments!!)
-        return ShareCompat.IntentBuilder.from(activity!!).setText(getString(R.string.share_success_text, args.numCorrect, args.numQuestions)).setType(("text/plain")).intent
+    private fun getShareIntent(): Intent? {
+        val args = arguments?.let { GameWonFragmentArgs.fromBundle(it) }
+        return activity?.let { ShareCompat.IntentBuilder.from(it).setText(getString(R.string.share_success_text, args?.numCorrect, args?.numQuestions)).setType(("text/plain")).intent }
     }
 
     private fun shareSuccess() {
