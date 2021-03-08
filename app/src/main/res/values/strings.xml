@@ -39,4 +39,16 @@
     <string name="android_trivia_title">MY ANDROID TRIVIA</string>
     <string name="more_info">More Info</string>
     <string name="more_info_text">The Android Trivia application is an application that asks the user trivia questions about Android development: layouts,navigation etc. </string>
+    <string name="correct_answer_message"> "Your answer is correct! Answer the following question."</string>
+    <string name="wrong_answer_message">"Sorry! Your answer is wrong."</string>
+    <string name="question_1">"What is Android Jetpack?"</string>
+    <string name="question_2">"Base class for Layout?"</string>
+    <string name="question_3">Layout for complex Screens?"</string>
+    <string name="question_4">"Pushing structured data into a Layout?"</string>
+    <string name="question_5">"Inflate layout in fragments?"</string>
+    <string name="question_6">"Build system for Android?"</string>
+    <string name="question_7">"Android vector format?"</string>
+    <string name="question_8">"Android Navigation Component?"</string>
+    <string name="question_9">"Registers app with launcher?"</string>
+    <string name="question_10">"Mark a layout for Data Binding?"</string>
 </resources>

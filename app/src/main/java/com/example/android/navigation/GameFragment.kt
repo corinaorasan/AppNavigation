@@ -28,44 +28,19 @@ import androidx.navigation.findNavController
 import com.example.android.navigation.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
-    data class Question(
-            val text: String,
-            val answers: List<String>)
-
-    // The first answer is the correct one.  We randomize the answers before showing the text.
-    // All questions must have four answers.  We'd want these to contain references to string
-    // resources so we could internationalize. (or better yet, not define the questions in code...)
-    private val questions: MutableList<Question> = mutableListOf(
-            Question(text = "What is Android Jetpack?",
-                    answers = listOf("all of these", "tools", "documentation", "libraries")),
-            Question(text = "Base class for Layout?",
-                    answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")),
-            Question(text = "Layout for complex Screens?",
-                    answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")),
-            Question(text = "Pushing structured data into a Layout?",
-                    answers = listOf("Data Binding", "Data Pushing", "Set Text", "OnClick")),
-            Question(text = "Inflate layout in fragments?",
-                    answers = listOf("onCreateView", "onViewCreated", "onCreateLayout", "onInflateLayout")),
-            Question(text = "Build system for Android?",
-                    answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")),
-            Question(text = "Android vector format?",
-                    answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector")),
-            Question(text = "Android Navigation Component?",
-                    answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")),
-            Question(text = "Registers app with launcher?",
-                    answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")),
-            Question(text = "Mark a layout for Data Binding?",
-                    answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"))
-    )
+    data class Question(val text: String, val answers: List<String>)
 
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
+    lateinit var questions: MutableList<Question>
     private var questionIndex = 0
-    private val numQuestions = Math.min((questions.size + 1) / 2, 3)
     private var answerIndex = 0
+    private var numQuestions = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
+        setQuestionsList()
+        val numQuestions = Math.min((questions.size + 1) / 2, 3)
 
         val binding = DataBindingUtil.inflate<FragmentGameBinding>(
                 inflater, R.layout.fragment_game, container, false)
@@ -83,7 +58,11 @@ class GameFragment : Fragment() {
                 // The first answer in the original question is always the correct one, so if our
                 // answer matches, we have the correct answer.
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
-                    Toast.makeText(context, "Your answer is correct! Answer the following question.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                            context,
+                            getString(R.string.correct_answer_message),
+                            Toast.LENGTH_LONG
+                    ).show()
                     questionIndex++
                     if (questionIndex < numQuestions) {
                         currentQuestion = questions[questionIndex]
@@ -93,7 +72,7 @@ class GameFragment : Fragment() {
                         navigateToGameWon()
                     }
                 } else {
-                    Toast.makeText(context, "Sorry! Your answer is wrong...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.wrong_answer_message), Toast.LENGTH_SHORT).show()
                     navigateToGameOver()
                 }
             }
@@ -131,5 +110,33 @@ class GameFragment : Fragment() {
 
     private fun navigateToGameOver() {
         view?.findNavController()?.navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment())
+    }
+
+    private fun setQuestionsList() {
+        // The first answer is the correct one.  We randomize the answers before showing the text.
+        // All questions must have four answers.  We'd want these to contain references to string
+        // resources so we could internationalize. (or better yet, not define the questions in code...)
+        questions = mutableListOf(
+                Question(text = getString(R.string.question_1),
+                        answers = listOf("all of these", "tools", "documentation", "libraries")),
+                Question(text = getString(R.string.question_2),
+                        answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")),
+                Question(text = getString(R.string.question_3),
+                        answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")),
+                Question(text = getString(R.string.question_4),
+                        answers = listOf("Data Binding", "Data Pushing", "Set Text", "OnClick")),
+                Question(text = getString(R.string.question_5),
+                        answers = listOf("onCreateView", "onViewCreated", "onCreateLayout", "onInflateLayout")),
+                Question(text = getString(R.string.question_6),
+                        answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")),
+                Question(text = getString(R.string.question_7),
+                        answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector")),
+                Question(text = getString(R.string.question_8),
+                        answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")),
+                Question(text = getString(R.string.question_9),
+                        answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")),
+                Question(text = getString(R.string.question_10),
+                        answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"))
+        )
     }
 }
