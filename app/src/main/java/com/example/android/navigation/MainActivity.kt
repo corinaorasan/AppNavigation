@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNavigationListener(navController: NavController) {
-        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
-            if (nd.id == nc.graph.startDestination) {
+        navController.addOnDestinationChangedListener { navController: NavController, navDest: NavDestination, args: Bundle? ->
+            if (navDest.id == navController.graph.startDestination) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             } else {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
